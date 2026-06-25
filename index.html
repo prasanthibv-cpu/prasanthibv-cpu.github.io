@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prof. Your Name | Professor of Computer Science</title>
+  <meta name="description" content="Personal website of Prof. Your Name — Lecture Notes, Resume, Blog & Contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --purple: #533AB7;
+      --purple-light: #EEEDFE;
+      --teal: #0F6E56;
+      --teal-light: #E1F5EE;
+      --coral: #993C1D;
+      --coral-light: #FAECE7;
+      --amber: #854F0B;
+      --amber-light: #FAEEDA;
+      --pink: #993556;
+      --pink-light: #FBEAF0;
+      --text: #1a1a1a;
+      --text-muted: #5f5e5a;
+      --bg: #f5f4f0;
+      --surface: #ffffff;
+      --border: rgba(0,0,0,0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── NAVIGATION ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 2rem;
+    }
+
+    .nav-logo { font-size: 17px; font-weight: 600; color: var(--purple); text-decoration: none; }
+
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 14px; transition: color .2s; }
+    .nav-links a:hover { color: var(--purple); }
+
+    .hamburger { display: none; background: none; border: none; font-size: 22px; cursor: pointer; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--purple-light) 0%, var(--teal-light) 50%, var(--coral-light) 100%);
+      padding: 3.5rem 2rem 3rem;
+      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+    }
+
+    .avatar {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: var(--purple); color: var(--purple-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 40px; font-weight: 600; flex-shrink: 0;
+      border: 4px solid var(--surface);
+    }
+
+    .hero-text h1 { font-size: 30px; font-weight: 600; color: #3C3489; margin-bottom: 6px; }
+    .hero-text .role { font-size: 16px; color: var(--teal); font-weight: 500; margin-bottom: 8px; }
+    .hero-text .bio { font-size: 14px; color: var(--text-muted); max-width: 520px; }
+
+    .hero-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 12px; padding: 5px 12px; border-radius: 20px; font-weight: 500;
+    }
+    .badge-purple { background: var(--purple); color: var(--purple-light); }
+    .badge-teal   { background: var(--teal);   color: var(--teal-light); }
+    .badge-coral  { background: var(--coral);  color: var(--coral-light); }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 2rem;
+    }
+    .stats-inner {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      max-width: 900px; margin: 0 auto; gap: 1rem; text-align: center;
+    }
+    .stat-num { font-size: 24px; font-weight: 600; }
+    .stat-label { font-size: 12px; color: var(--text-muted); }
+
+    /* ── SECTIONS ── */
+    .section { padding: 2.5rem 2rem; max-width: 960px; margin: 0 auto; }
+    .section-title {
+      font-size: 20px; font-weight: 600; margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 10px; color: var(--text);
+    }
+    .section-title span { font-size: 22px; }
+
+    /* ── CARDS ── */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 14px; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.1rem 1.25rem;
+    }
+
+    .card-icon-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+
+    .icon-box {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 20px;
+    }
+    .icon-purple { background: var(--purple-light); }
+    .icon-teal   { background: var(--teal-light); }
+    .icon-coral  { background: var(--coral-light); }
+    .icon-amber  { background: var(--amber-light); }
+
+    .card h3 { font-size: 14px; font-weight: 600; }
+    .card p { font-size: 13px; color: var(--text-muted); margin-top: 6px; line-height: 1.5; }
+
+    /* ── RESUME ── */
+    .resume-block { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem; margin-bottom: 14px; }
+    .resume-block h3 { font-size: 15px; font-weight: 600; margin-bottom: 10px; color: var(--purple); }
+    .timeline-row { display: flex; gap: 1rem; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .timeline-row:last-child { border-bottom: none; }
+    .tl-year { font-size: 12px; color: var(--text-muted); min-width: 60px; padding-top: 2px; }
+    .tl-title { font-size: 14px; font-weight: 500; }
+    .tl-sub { font-size: 13px; color: var(--text-muted); }
+
+    .dl-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 18px; border-radius: 8px;
+      background: var(--purple); color: white;
+      text-decoration: none; font-size: 13px; font-weight: 500;
+      margin-top: 12px; border: none; cursor: pointer;
+    }
+    .dl-btn:hover { opacity: 0.9; }
+
+    /* ── LECTURE NOTES ── */
+    .notes-box { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .notes-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.25rem; border-bottom: 1px solid var(--border);
+    }
+    .subject-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 1.25rem; border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+    .subject-row:last-child { border-bottom: none; }
+    .subject-row:hover { background: var(--bg); }
+
+    .subject-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .subject-left { display: flex; align-items: center; gap: 10px; }
+    .subject-name { font-size: 14px; font-weight: 500; }
+    .subject-meta { font-size: 12px; color: var(--text-muted); }
+    .subject-right { display: flex; align-items: center; gap: 8px; }
+
+    .pill {
+      font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500;
+    }
+
+    .view-btn {
+      font-size: 12px; color: var(--purple); text-decoration: none;
+      border: 1px solid var(--purple); border-radius: 6px; padding: 4px 12px;
+    }
+
+    /* ── BLOG ── */
+    .blog-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.25rem; margin-bottom: 12px;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .blog-num { font-size: 28px; font-weight: 600; color: var(--purple-light); line-height: 1; min-width: 40px; }
+    .blog-date { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+    .blog-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .blog-desc { font-size: 13px; color: var(--text-muted); }
+    .read-link { font-size: 12px; color: var(--purple); font-weight: 500; text-decoration: none; margin-top: 8px; display: inline-block; }
+
+    /* ── CONTACT ── */
+    .contact-section { background: var(--teal-light); padding: 2.5rem 2rem; }
+    .contact-inner { max-width: 960px; margin: 0 auto; }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+    .contact-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.25rem; text-align: center;
+    }
+    .contact-icon { font-size: 26px; margin-bottom: 8px; }
+    .contact-name { font-size: 13px; font-weight: 600; }
+    .contact-val { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .contact-card a { color: inherit; text-decoration: none; }
+
+    /* ── FOOTER ── */
+    footer { text-align: center; padding: 1.2rem; font-size: 12px; color: var(--text-muted); background: var(--surface); border-top: 1px solid var(--border); }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width: 600px) {
+      .hamburger { display: block; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 2rem; gap: 1rem; }
+      .nav-links.open { display: flex; }
+      .stats-inner { grid-template-columns: repeat(2,1fr); }
+      .hero { flex-direction: column; text-align: center; }
+      .hero-badges { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a class="nav-logo" href="#">📚 Prof. Your Name</a>
+  <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#notes">Lecture Notes</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about">
+  <div class="avatar">PN</div>
+  <div class="hero-text">
+    <h1>Prof. Your Full Name</h1>
+    <div class="role">Associate Professor · Department of Computer Science</div>
+    <div class="bio">
+      Welcome! I teach Data Structures, Machine Learning, and Operating Systems at [Your University], Tamil Nadu.
+      I believe in making complex topics simple, visual, and hands-on.
+      Find my lecture notes, projects, and blog posts right here.
+    </div>
+    <div class="hero-badges">
+      <span class="badge badge-purple">📍 Tamil Nadu, India</span>
+      <span class="badge badge-teal">🎓 Ph.D, Computer Science</span>
+      <span class="badge badge-coral">📄 6 Publications</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div><div class="stat-num" style="color:var(--purple)">8+</div><div class="stat-label">Years Teaching</div></div>
+    <div><div class="stat-num" style="color:var(--teal)">12</div><div class="stat-label">Subjects Taught</div></div>
+    <div><div class="stat-num" style="color:var(--coral)">200+</div><div class="stat-label">Lecture Notes</div></div>
+    <div><div class="stat-num" style="color:var(--amber)">500+</div><div class="stat-label">Students</div></div>
+  </div>
+</div>
+
+<!-- RESUME -->
+<div class="section" id="resume">
+  <div class="section-title"><span>📋</span> Resume</div>
+
+  <div class="resume-block">
+    <h3>Work Experience</h3>
+    <div class="timeline-row">
+      <div class="tl-year">2020 –<br>Present</div>
+      <div><div class="tl-title">Associate Professor</div><div class="tl-sub">Department of Computer Science · Your University, Tamil Nadu</div></div>
+    </div>
+    <div class="timeline-row">
+      <div class="tl-year">2016 – 20</div>
+      <div><div class="tl-title">Assistant Professor</div><div class="tl-sub">Department of Information Technology · ABC College</div></div>
+    </div>
+    <div class="timeline-row">
+      <div class="tl-year">2014 – 16</div>
+      <div><div class="tl-title">Research Scholar</div><div class="tl-sub">National Institute of Technology, Tamil Nadu</div></div>
+    </div>
+    <!-- ✏️ Add more rows here -->
+    <a class="dl-btn" href="resume.pdf" download>⬇ Download Full Resume (PDF)</a>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon-row"><div class="icon-box icon-purple">🎓</div><h3>Education</h3></div>
+      <p>Ph.D — Computer Science<br>M.Tech — Information Technology<br>B.E — Computer Engineering</p>
+    </div>
+    <div class="card">
+      <div class="card-icon-row"><div class="icon-box icon-teal">📜</div><h3>Certifications</h3></div>
+      <p>NPTEL Elite Certifications<br>Coursera Machine Learning<br>Faculty Development Programmes</p>
+    </div>
+    <div class="card">
+      <div class="card-icon-row"><div class="icon-box icon-coral">📰</div><h3>Publications</h3></div>
+      <p>6 papers in Scopus, IEEE &amp; Springer indexed journals. <a href="#" style="color:var(--coral)">View list →</a></p>
+    </div>
+    <div class="card">
+      <div class="card-icon-row"><div class="icon-box icon-amber">🏆</div><h3>Awards</h3></div>
+      <p>Best Teacher Award 2022<br>Research Excellence Grant 2021</p>
+    </div>
+  </div>
+</div>
+
+<!-- LECTURE NOTES -->
+<div style="background:var(--surface); padding: 2.5rem 0;">
+<div class="section" id="notes" style="padding-top:0; padding-bottom:0;">
+  <div class="section-title"><span>📚</span> Lecture Notes by Subject</div>
+
+  <div class="notes-box">
+    <div class="notes-header">
+      <span style="font-size:14px;font-weight:500;">All Subjects</span>
+      <!-- ✏️ Replace the href below with your Google Drive / Dropbox link -->
+      <a class="dl-btn" href="#" style="margin-top:0; text-decoration:none;">⬆ Upload / Manage Files</a>
+    </div>
+
+    <!-- ✏️ For each subject: add a <div class="subject-row"> below and link to your folder -->
+
+    <div class="subject-row">
+      <div class="subject-left">
+        <div class="subject-dot" style="background:var(--purple)"></div>
+        <div>
+          <div class="subject-name">Data Structures &amp; Algorithms</div>
+          <div class="subject-meta">14 files · PDF, PPT · Updated June 2025</div>
+        </div>
+      </div>
+      <div class="subject-right">
+        <span class="pill" style="background:var(--purple-light);color:var(--purple)">Sem 3</span>
+        <a class="view-btn" href="notes/data-structures/">View →</a>
+      </div>
+    </div>
+
+    <div class="subject-row">
+      <div class="subject-left">
+        <div class="subject-dot" style="background:var(--teal)"></div>
+        <div>
+          <div class="subject-name">Operating Systems</div>
+          <div class="subject-meta">11 files · PDF · Updated May 2025</div>
+        </div>
+      </div>
+      <div class="subject-right">
+        <span class="pill" style="background:var(--teal-light);color:var(--teal)">Sem 4</span>
+        <a class="view-btn" href="notes/operating-systems/">View →</a>
+      </div>
+    </div>
+
+    <div class="subject-row">
+      <div class="subject-left">
+        <div class="subject-dot" style="background:var(--coral)"></div>
+        <div>
+          <div class="subject-name">Computer Networks</div>
+          <div class="subject-meta">9 files · PDF, DOCX · Updated June 2025</div>
+        </div>
+      </div>
+      <div class="subject-right">
+        <span class="pill" style="background:var(--coral-light);color:var(--coral)">Sem 5</span>
+        <a class="view-btn" href="notes/computer-networks/">View →</a>
+      </div>
+    </div>
+
+    <div class="subject-row">
+      <div class="subject-left">
+        <div class="subject-dot" style="background:var(--amber)"></div>
+        <div>
+          <div class="subject-name">Machine Learning</div>
+          <div class="subject-meta">17 files · PDF, Jupyter Notebooks · Updated today</div>
+        </div>
+      </div>
+      <div class="subject-right">
+        <span class="pill" style="background:var(--amber-light);color:var(--amber)">Sem 6</span>
+        <a class="view-btn" href="notes/machine-learning/">View →</a>
+      </div>
+    </div>
+
+    <div class="subject-row">
+      <div class="subject-left">
+        <div class="subject-dot" style="background:var(--pink)"></div>
+        <div>
+          <div class="subject-name">Database Management Systems</div>
+          <div class="subject-meta">12 files · PDF · Updated June 2025</div>
+        </div>
+      </div>
+      <div class="subject-right">
+        <span class="pill" style="background:var(--pink-light);color:var(--pink)">Sem 4</span>
+        <a class="view-btn" href="notes/dbms/">View →</a>
+      </div>
+    </div>
+
+    <!-- ✏️ Copy a subject-row above and paste here to add a new subject -->
+
+  </div>
+</div>
+</div>
+
+<!-- BLOG & PROJECTS -->
+<div class="section" id="blog">
+  <div class="section-title"><span>✍️</span> Blog &amp; Projects</div>
+
+  <!-- ✏️ Replace each blog-card with your actual blog post -->
+
+  <div class="blog-card">
+    <div class="blog-num">01</div>
+    <div>
+      <div class="blog-date">June 2025</div>
+      <div class="blog-title">Teaching ML to undergrads: lessons from the classroom</div>
+      <div class="blog-desc">How I simplified backpropagation using visual analogies and hands-on coding sessions that actually worked.</div>
+      <a class="read-link" href="#">Read more →</a>
+    </div>
+  </div>
+
+  <div class="blog-card">
+    <div class="blog-num">02</div>
+    <div>
+      <div class="blog-date">March 2025</div>
+      <div class="blog-title">My NPTEL experience — what worked and what didn't</div>
+      <div class="blog-desc">An honest reflection on online certification and integrating new learning with regular coursework.</div>
+      <a class="read-link" href="#">Read more →</a>
+    </div>
+  </div>
+
+  <div class="blog-card">
+    <div class="blog-num">03</div>
+    <div>
+      <div class="blog-date">January 2025</div>
+      <div class="blog-title">Smart attendance system using IoT — student project spotlight</div>
+      <div class="blog-desc">A final year project using RFID &amp; Raspberry Pi to automate attendance marking in classrooms.</div>
+      <a class="read-link" href="#">Read more →</a>
+    </div>
+  </div>
+
+  <!-- ✏️ Add more blog cards here -->
+
+</div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="section-title"><span>📬</span> Contact</div>
+    <div class="contact-grid">
+
+      <div class="contact-card">
+        <div class="contact-icon">📧</div>
+        <div class="contact-name">Email</div>
+        <!-- ✏️ Replace with your email -->
+        <div class="contact-val"><a href="mailto:yourname@university.edu">yourname@university.edu</a></div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">💼</div>
+        <div class="contact-name">LinkedIn</div>
+        <!-- ✏️ Replace with your LinkedIn URL -->
+        <div class="contact-val"><a href="https://linkedin.com/in/yourname" target="_blank">linkedin.com/in/yourname</a></div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">🐙</div>
+        <div class="contact-name">GitHub</div>
+        <!-- ✏️ Replace with your GitHub -->
+        <div class="contact-val"><a href="https://github.com/yourname" target="_blank">github.com/yourname</a></div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">📞</div>
+        <div class="contact-name">Phone / WhatsApp</div>
+        <!-- ✏️ Replace with your phone -->
+        <div class="contact-val">+91 98XXX XXXXX</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Prof. Your Name · Hosted on GitHub Pages · Built with ❤️ from Tamil Nadu
+</footer>
+
+</body>
+</html>
